@@ -1,4 +1,15 @@
-import type { ApiResponse, AuthResponse, AuthUser, InventorySummary, MenuItem, Order, OrderItem, OrderStatus } from "./types";
+import type {
+  ApiResponse,
+  AuthResponse,
+  AuthUser,
+  InventoryHistoryItem,
+  InventorySummary,
+  InventorySummaryStats,
+  MenuItem,
+  Order,
+  OrderItem,
+  OrderStatus,
+} from "./types";
 
 const getApiUrl = (): string => {
   const url = process.env.NEXT_PUBLIC_API_URL;
@@ -89,4 +100,11 @@ export const api = {
       method: "PATCH",
       body: JSON.stringify(payload),
     }),
+
+  adminGetInventorySummary: (): Promise<{
+    stats: InventorySummaryStats;
+    history: InventoryHistoryItem[];
+  }> => fetchApi<{ stats: InventorySummaryStats; history: InventoryHistoryItem[] }>(
+    "/admin/inventory/summary"
+  ),
 };

@@ -7,6 +7,30 @@ export interface InventorySummary {
   inStock: boolean;
 }
 
+export interface InventoryHistoryItem {
+  historyId: string;
+  menuItemId: string;
+  action: "MANUAL_UPDATE" | "ORDER_CONFIRMED" | "DAILY_RESET" | "INITIALIZED";
+  quantityDelta: number;
+  previousCurrentStock: number;
+  nextCurrentStock: number;
+  previousDailySold: number;
+  nextDailySold: number;
+  previousDailyLimit: number;
+  nextDailyLimit: number;
+  actor: string;
+  note: string;
+  createdAt: string;
+}
+
+export interface InventorySummaryStats {
+  totalMenuItems: number;
+  inStockItems: number;
+  outOfStockItems: number;
+  totalCurrentStock: number;
+  totalRemainingToday: number;
+}
+
 export interface MenuItem {
   menuItemId: string;
   name: string;
